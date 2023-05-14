@@ -1,7 +1,7 @@
 ---
 title: duxelles
 date: 2021-05-16 18:00:00 -4
-description: A sautee of minced mushooms that is suitable for use as a pasta or omelete filling or a topping for bruschetta. Yields approx 2 cups.
+description: A saute of minced mushrooms that is suitable for use as a pasta or omelette filling or a topping for bruschetta. Yields approx 2 cups.
 tags: ['mushroom', 'filling']
 ---
 

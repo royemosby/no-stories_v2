@@ -1,7 +1,8 @@
 ---
-title: popcorn topping
-description: A cheesy, slightly spicy topping powder that is perfect for popcorn.
 date: 2022-05-02
+description: A cheesy, slightly spicy topping powder that is perfect for popcorn.
+tags: ['snack', 'topping', 'mix']
+title: popcorn topping
 ---
 
 ## Ingredients

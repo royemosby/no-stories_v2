@@ -2,6 +2,7 @@
 title: popcorn
 description: Process to make plain ol' popcorn. Makes 5 liters
 date: 2022-05-02
+tags: ['snack', 'savory', 'foundation']
 ---
 
 ## Ingredients

@@ -1,7 +1,8 @@
 ---
-title: pasta dough
 date: 2021-05-16 18:00:00 -4
 description: Basic pasta dough that is good for ravioli, tagliatelle, and other tasty things. Makes roughly 14 oz.
+tags: ['pasta', 'foundation']
+title: pasta dough
 ---
 
 *This recipe can be easily doubled if using a stand mixer. In the future, I will add in the steps needed to form various types of pasta with this dough. For now, the specific pasta type is a DIY affair.*

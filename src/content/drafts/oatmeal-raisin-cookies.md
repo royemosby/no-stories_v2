@@ -1,6 +1,6 @@
 ---
 title: oatmeal raisin cookies
-date: 2023-061-(02) 18:00:00 -4
+date: 2023-06-02
 description: Delightfully chewy with a lovely flavor.
 tags: ['dessert', 'oatmeal', 'raisin', 'cookie']
 ---

@@ -1,6 +1,6 @@
 ---
 date: 2023-01-28
-title: FWSY Breads
+title: Breads from FWSY
 description: Baseline recipes found in Flour Water Salt Yeast that I use.
 tags: ['bread']
 ---

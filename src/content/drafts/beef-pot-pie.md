@@ -1,3 +1,7 @@
+---
+title: beef pot pie
+---
+
 Beef pot pie
 
 3 lbs beef short ribs or shit-whack chuck roast
