@@ -1,0 +1,66 @@
+---
+import BaseLayout, { collectionCategory } from '../layouts/base-layout.astro';
+import Social from '../components/common/social.astro';
+import ContactForm from '../components/common/contact-form.astro';
+
+const title = 'about';
+const description = 'Details about this site and its author.';
+---
+
+<BaseLayout
+  pageTitle={title}
+  pageDescription={description}
+  category={collectionCategory.ABOUT}
+>
+  <h1>{title} this site</h1>
+  <h2>Recipe stories can be tedious</h2>
+  <p>
+    SomepageTitlpageDescriptionthing needed is a recipe. This site dispenses
+    with storytime and is an uncluttered reference for the kitchen. It was was
+    designed to work marvelously with mobile devices since they are the new
+    cookbooks.
+  </p>
+
+  <h2>About me</h2>
+
+  <p>
+    I was born in the late 70's but self-identify as an elder millennial.
+    Married, 1 kid, cats. <a
+      href="https://www.nytimes.com/2015/02/22/sunday-review/please-dont-thank-me-for-my-service.html"
+      >Military retiree</a
+    >. I'm a fan of flat caps and cast iron. I'm highly inspired by the cuisines
+    we experienced while we traveled abroad. Cucina povera of southern Italy,
+    germanic dishes, and hungarian foods all have a special place in my heart.
+  </p>
+
+  <h2>Not a profit-driven site</h2>
+
+  <p>
+    Hosting is cheap these days so this site is a toy project. No one is paying
+    for this site other than myself. Links or brands that appear on this site
+    only because of a personal preference. If any of this were ever to change,
+    it will be noted here.
+  </p>
+
+  <h2>Geekery</h2>
+
+  <p>
+    I am using <a href="https://astro.build/">Astro</a> to build this site and hosting
+    on Netlify. For those who are curious, you can see the site's Github repo here:
+    <a href="https://github.com/royemosby/no-stories">royemosby/no-stories</a>.
+  </p>
+
+  <h2>A note on copyright law regarding recipes</h2>
+
+  <p>
+    U.S. Copyright office maintains that plain recipes (list of ingredients and
+    instructions) cannot be covered by copyright. See <a
+      href="https://www.copyright.gov/circs/circ33.pdf">Circular 33 (PDF)</a
+    > for more details. Some of the recipes on this site are inspired by those that
+    I have found in books or on other sites. In the spirit of gratitude, I have provided
+    a reference to the original source wherever possible.
+  </p>
+
+  <Social />
+  <ContactForm />
+</BaseLayout>

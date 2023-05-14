@@ -1,0 +1,54 @@
+---
+export interface Props {
+  previousPage: string;
+  nextPage: string;
+  currentPage: number;
+  pageCount: number;
+}
+
+const { previousPage, nextPage, currentPage, pageCount } = Astro.props;
+---
+
+<nav>
+  {
+    previousPage && (
+      <div class="pagination-control">
+        <a href={previousPage}>
+          <span>&lt;&lt; Previous</span>
+        </a>
+      </div>
+    )
+  }
+
+  <div class="pagination-control">
+    <span>Page {currentPage} of {pageCount}</span>
+  </div>
+  {
+    nextPage && (
+      <div class="pagination-control">
+        <a href={nextPage}>
+          <span>Next &gt;&gt;</span>
+        </a>
+      </div>
+    )
+  }
+</nav>
+<style>
+  nav {
+    display: flex;
+  }
+  .pagination-control {
+    padding: 0.5rem;
+    position: relative;
+    text-align: center;
+  }
+  .pagination-control:not(:last-child)::after {
+    content: '|';
+    position: absolute;
+    right: 0;
+  }
+  .pagination-control span {
+    display: inline-block;
+    text-align: center;
+  }
+</style>

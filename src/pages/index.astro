@@ -1,81 +1,110 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/base-layout.astro';
+import Card from '../components/card-component.astro';
+import EntryCardComponent from '../components/entry-card-component.astro';
+import { toTitleCase } from '../utils';
+import { collectionCategory } from '../layouts/base-layout.astro';
+
+const recipes = await getCollection('recipes');
+const concepts = await getCollection('concepts');
+const notes = await getCollection('notes');
+
+const filteredConcepts = concepts.filter((concept) => !concept.data.definition);
+
+const entries = [...recipes, ...filteredConcepts, ...notes];
+
+const sortedEntries = entries
+  .sort((a, b) => {
+    if (!a.data.date) return 1;
+    if (!b.data.date) return -1;
+    if (a.data.date < b.data.date) return 1;
+    if (b.data.date < a.data.date) return -1;
+    return 0;
+  })
+  .slice(0, 3);
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
-</Layout>
+<BaseLayout
+  pageTitle="No Stories"
+  pageDescription="Welcome to kaleidoscope"
+  category={collectionCategory.INDEX}
+>
+  <main>
+    <ul
+      role="list"
+      class="link-card-grid"
+    >
+      <Card
+        href="/recipes/1"
+        title="Recipes"
+        body="Go cook some stuff"
+      />
+      <Card
+        href="/concepts"
+        title="Concepts"
+        body="General cooking notes, shorthand for techiques..."
+      />
+      <Card
+        href="/tools/1"
+        title="Tools"
+        body="Digital food prep tools, widgets"
+      />
+      <Card
+        href="/about"
+        title="About"
+        body="Do some shit and tell about it here"
+      />
+    </ul>
+    <h1>Recent Updates</h1>
+    {
+      sortedEntries.map((entry) => (
+        <EntryCardComponent
+          href={'/' + entry.collection + '/' + entry.slug}
+          title={toTitleCase(entry.data.title)}
+          date={entry.data.date}
+          description={entry.data.description}
+        />
+      ))
+    }
+  </main>
+</BaseLayout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
+  main {
+    margin: auto;
+    padding: 1.5rem;
+    max-width: 60ch;
+  }
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .instructions {
+    line-height: 1.6;
+    margin: 1rem 0;
+    border: 1px solid rgba(var(--accent), 25%);
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.4rem;
+  }
+  .instructions code {
+    font-size: 0.875em;
+    font-weight: bold;
+    background: rgba(var(--accent), 12%);
+    color: rgb(var(--accent));
+    border-radius: 4px;
+    padding: 0.3em 0.45em;
+  }
+  .instructions strong {
+    color: rgb(var(--accent));
+  }
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 1rem;
+    padding: 0;
+  }
 </style>
