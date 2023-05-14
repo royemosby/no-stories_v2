@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import IndexLayout from '../../layouts/index-layout.astro';
+import EntryCardComponent from '../../components/entry-card-component.astro';
+import { toTitleCase } from '../../utils';
+import Pagination from '../../components/common/pagination.astro';
+import { collectionCategory } from '../../layouts/base-layout.astro';
+
+export async function getStaticPaths({ paginate }) {
+  const recipes = await getCollection('recipes');
+  const sortedRecipes = recipes.sort((a, b) => {
+    const aTitle = a.data.title.toLowerCase();
+    const bTitle = b.data.title.toLowerCase();
+    if (aTitle < bTitle) return -1;
+    if (bTitle < aTitle) return 1;
+    return 0;
+  });
+  return paginate(sortedRecipes, { pageSize: 10 });
+}
+const { page } = Astro.props;
+---
+
+<IndexLayout
+  pageDescription="Recipes that I have made or curated over the years"
+  pageTitle="Recipes"
+  category={collectionCategory.RECIPES}
+>
+  <h1>Recipes</h1>
+  <p class="subheading">Recipes that I have made or curated over the years</p>
+  <Pagination
+    previousPage={page.url.prev}
+    nextPage={page.url.next}
+    currentPage={page.currentPage}
+    pageCount={page.lastPage}
+  />
+  {
+    page.data.map((recipe) => (
+      <EntryCardComponent
+        href={'/recipes/' + recipe.slug}
+        title={toTitleCase(recipe.data.title)}
+        date={recipe.data.date}
+        description={recipe.data.description}
+      />
+    ))
+  }
+  <Pagination
+    previousPage={page.url.prev}
+    nextPage={page.url.next}
+    currentPage={page.currentPage}
+    pageCount={page.lastPage}
+  />
+</IndexLayout>
+
+{/*<div>{toTitleCase(recipe.data.title)}</div>*/}

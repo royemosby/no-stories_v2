@@ -1,0 +1,46 @@
+---
+import { formatDate } from '../utils/time';
+export interface Props {
+  title: string;
+  date?: Date;
+  description?: string;
+  href: string;
+  pinned?: boolean;
+}
+
+const { title, date, description, href, pinned } = Astro.props;
+---
+
+<a href={href}>
+  <article class={pinned ? 'pinned' : ''}>
+    <h2>{title}</h2>
+    <h3>{description}</h3>
+    {date && <p>{'Updated at ' + formatDate(date)}</p>}
+  </article>
+</a>
+<style>
+  a {
+    display: block;
+    border: 1px solid black;
+    margin: 1rem;
+    padding: 1rem;
+    position: relative;
+  }
+  a:hover {
+    background-color: rgb(219, 255, 219);
+  }
+  .pinned {
+    position: relative;
+  }
+  .pinned::after {
+    content: '';
+    position: absolute;
+    background-size: contain;
+    background-image: url('/images/icons/pin.svg');
+    height: 30px;
+    width: 30px;
+    z-index: 1;
+    top: 0;
+    right: 0;
+  }
+</style>

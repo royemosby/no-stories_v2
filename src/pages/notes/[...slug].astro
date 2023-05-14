@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import PostLayout from '../../layouts/post-layout.astro';
+import { collectionCategory } from '../../layouts/base-layout.astro';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  return notes.map((note) => ({
+    params: { slug: note.slug },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await note.render();
+---
+
+<PostLayout
+  category={collectionCategory.NOTES}
+  postDescription={note.data.description}
+  postTitle={note.data.title}
+>
+  <Content />
+</PostLayout>

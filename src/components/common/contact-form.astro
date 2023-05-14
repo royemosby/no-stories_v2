@@ -1,0 +1,39 @@
+---
+---
+
+<h2>Get in contact</h2>
+<form
+  id="contact"
+  name="contact"
+  {/* netlify //QUESTION: ??how to I get a plain attribute in here??*/}
+>
+  <label for="name">name</label><input
+    id="name"
+    type="text"
+    name="name"
+  />
+
+  <label for="email">email</label><input
+    id="email"
+    type="email"
+    name="email"
+  />
+
+  <label for="message">message</label>
+  <textarea
+    id="message"
+    name="message"
+    rows="6"
+  ></textarea>
+
+  <button type="submit">send message</button>
+</form>
+<style>
+  form {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+  }
+  form button {
+    grid-column: 1 / -1;
+  }
+</style>

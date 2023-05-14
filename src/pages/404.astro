@@ -1,0 +1,43 @@
+---
+import BaseLayout, { collectionCategory } from '../layouts/base-layout.astro';
+
+const pageTitle = 'You got burnt! Page not found!';
+const permalink = '404.html';
+const pageDescription = 'Page cannot be found';
+---
+
+<BaseLayout
+  pageDescription={pageDescription}
+  pageTitle={pageTitle}
+  category={collectionCategory.NOT_FOUND}
+>
+  <h1>
+    {pageTitle}
+  </h1>
+  <h2>
+    <a href="/">Return to NoStories Home</a>
+  </h2>
+  <div>
+    <figure>
+      <img
+        src="/images/burned-waffle.jpg"
+        alt="Burned waffle is a sad state of affairs. So is a dead link."
+      />
+      <caption
+        >Waffles are not meant to stay in a waffle iron for 40 minutes.</caption
+      >
+    </figure>
+  </div>
+</BaseLayout>
+<style>
+  figure {
+    margin: auto;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  img {
+    width: 100%;
+  }
+</style>

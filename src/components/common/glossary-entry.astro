@@ -1,0 +1,9 @@
+---
+const { definition } = Astro.props;
+const { Content } = await definition.render();
+---
+
+<details>
+  <summary>{definition.data.title}</summary>
+  <Content />
+</details>

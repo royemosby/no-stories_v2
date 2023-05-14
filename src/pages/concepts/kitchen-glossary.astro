@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+
+import BaseLayout, {
+  collectionCategory,
+} from '../../layouts/base-layout.astro';
+import GlossaryEntry from '../../components/common/glossary-entry.astro';
+
+const concepts = await getCollection('concepts');
+const [glossary] = concepts.filter(
+  (concept) => concept.slug === 'kitchen-glossary',
+);
+const definitions = concepts.filter((concept) => concept.data.definition);
+---
+
+<BaseLayout
+  category={collectionCategory.CONCEPTS}
+  pageDescription={glossary.data.description || 'glossary'}
+  pageTitle={glossary.data.title}
+>
+  <h1>{glossary.data.description || 'glossary'}</h1>
+  {definitions.map((d) => <GlossaryEntry definition={d} />)}
+</BaseLayout>

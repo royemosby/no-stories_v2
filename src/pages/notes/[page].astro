@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import IndexLayout from '../../layouts/index-layout.astro';
+import EntryCardComponent from '../../components/entry-card-component.astro';
+import { toTitleCase } from '../../utils';
+import Pagination from '../../components/common/pagination.astro';
+import { collectionCategory } from '../../layouts/base-layout.astro';
+
+export async function getStaticPaths({ paginate }) {
+  const notes = await getCollection('notes');
+  const sortedNotes = notes.sort((a, b) => {
+    const aTitle = a.data.title.toLowerCase();
+    const bTitle = b.data.title.toLowerCase();
+    if (aTitle < bTitle) return -1;
+    if (bTitle < aTitle) return 1;
+    return 0;
+  });
+  return paginate(sortedNotes, { pageSize: 10 });
+}
+const { page } = Astro.props;
+---
+
+<IndexLayout
+  pageTitle="Notes"
+  pageDescription="Collection of notes and recipe shorthands"
+  category={collectionCategory.NOTES}
+>
+  <h1>Notes</h1>
+  <p class="subheading">
+    Recipe and instruction shorthands for quick reference
+  </p>
+  <p>Page {page.currentPage} of {page.lastPage}</p>
+  {
+    page.data.map((note) => (
+      <EntryCardComponent
+        href={'/notes/' + note.slug}
+        title={toTitleCase(note.data.title)}
+        date={note.data.date}
+        description={note.data.description}
+      />
+    ))
+  }
+  <Pagination
+    previousPage={page.url.prev}
+    nextPage={page.url.next}
+    currentPage={page.currentPage}
+    pageCount={page.lastPage}
+  />
+</IndexLayout>

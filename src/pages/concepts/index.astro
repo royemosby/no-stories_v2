@@ -1,0 +1,52 @@
+---
+import IndexLayout from '../../layouts/index-layout.astro';
+import Pagination from '../../components/common/pagination.astro';
+import { getCollection } from 'astro:content';
+import EntryCardComponent from '../../components/entry-card-component.astro';
+import { toTitleCase } from '../../utils';
+import { collectionCategory } from '../../layouts/base-layout.astro';
+
+const title = 'concepts';
+const description =
+  'A reference containing concepts and techniques to aid in cooking';
+
+const contepts = await getCollection('concepts');
+const sortedConcepts = contepts
+  .sort((a, b) => {
+    const aTitle = a.data.title.toLowerCase();
+    const bTitle = b.data.title.toLowerCase();
+    if (aTitle < bTitle) return -1;
+    if (bTitle < aTitle) return 1;
+    return 0;
+  })
+  //Astro collections are flat. This removes definition entries.
+  .filter((a) => !a.data.definition)
+  //surface pinned collection items
+  .sort((a, b) => {
+    if (a.data.pinned) return -1;
+    if (b.data.pinned) return 1;
+    else return 0;
+  });
+---
+
+<IndexLayout
+  category={collectionCategory.CONCEPTS}
+  pageTitle={title}
+  pageDescription={description}
+>
+  <div class="center">
+    <h1>Concepts</h1>
+    <p class="subheading">Articles and guides that focus on techniques</p>
+  </div>
+  {
+    sortedConcepts.map((entry) => (
+      <EntryCardComponent
+        href={'/' + entry.collection + '/' + entry.slug}
+        title={toTitleCase(entry.data.title)}
+        date={entry.data.date}
+        description={entry.data.description}
+        pinned={entry.data.pinned}
+      />
+    ))
+  }
+</IndexLayout>

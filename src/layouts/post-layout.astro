@@ -1,0 +1,20 @@
+---
+import { collectionCategory } from './base-layout.astro';
+import BaseLayout from './base-layout.astro';
+export interface Props {
+  postTitle: string;
+  postDescription: string;
+  category: collectionCategory;
+}
+const { postTitle, postDescription, category } = Astro.props;
+---
+
+<BaseLayout
+  category={category}
+  pageTitle={postTitle}
+  pageDescription={postDescription}
+>
+  <h1>{postTitle}</h1>
+  <h2>{postDescription}</h2>
+  <slot />
+</BaseLayout>

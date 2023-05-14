@@ -1,0 +1,70 @@
+---
+import { collectionCategory } from '../../layouts/base-layout.astro';
+
+const { category } = Astro.props;
+---
+
+<ul>
+  <li class={category === collectionCategory.INDEX ? 'current-page' : ''}>
+    <a href="/">home</a>
+  </li>
+  {
+    /*<li class={category === collectionCategory.NOT_FOUND ? 'current-page' : ''}>
+    <a href="/404">404</a>
+  </li>*/
+  }
+  <li class={category === collectionCategory.ABOUT ? 'current-page' : ''}>
+    <a href="/about">about</a>
+  </li>
+  <li class={category === collectionCategory.RECIPES ? 'current-page' : ''}>
+    <a href="/recipes/1">recipes</a>
+  </li>
+  <li class={category === collectionCategory.CONCEPTS ? 'current-page' : ''}>
+    <a href="/concepts">concepts</a>
+  </li>
+  <li class={category === collectionCategory.TOOLS ? 'current-page' : ''}>
+    <a href="/tools/1">tools</a>
+  </li>
+  <li class={category === collectionCategory.NOTES ? 'current-page' : ''}>
+    <a href="/notes/1">notes</a>
+  </li>
+  {
+    /*<li class={category === collectionCategory.SEARCH ? 'current-page' : ''}>
+    <a href="/search">search</a>
+  </li>*/
+  }
+</ul>
+<style>
+  ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  li {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    padding: 0 1rem 1rem 1rem;
+  }
+
+  li a {
+    text-decoration: none;
+  }
+  li:hover a {
+    text-decoration: underline;
+  }
+  .current-page {
+    position: relative;
+  }
+  .current-page::before {
+    content: '';
+    width: 100%;
+    height: 15px;
+    position: absolute;
+    bottom: 0.75rem;
+    z-index: -1;
+    opacity: 30%;
+    background-image: var(--accent-gradient);
+  }
+</style>

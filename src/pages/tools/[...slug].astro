@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+
+import PostLayout from '../../layouts/post-layout.astro';
+import { collectionCategory } from '../../layouts/base-layout.astro';
+
+export async function getStaticPaths() {
+  const tools = await getCollection('tools');
+  return tools.map((tool) => ({
+    params: { slug: tool.slug },
+    props: { tool },
+  }));
+}
+
+const { tool } = Astro.props;
+const { Content } = await tool.render();
+---
+
+<PostLayout
+  postDescription={tool.data.description}
+  postTitle={tool.data.title}
+  category={collectionCategory.TOOLS}
+>
+  <Content />
+</PostLayout>

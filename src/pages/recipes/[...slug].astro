@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import PostLayout from '../../layouts/post-layout.astro';
+import { collectionCategory } from '../../layouts/base-layout.astro';
+
+export async function getStaticPaths() {
+  const recipes = await getCollection('recipes');
+  return recipes.map((recipe) => ({
+    params: { slug: recipe.slug },
+    props: { recipe },
+  }));
+}
+
+const { recipe } = Astro.props;
+const { Content } = await recipe.render();
+---
+
+<PostLayout
+  postDescription={recipe.data.description}
+  postTitle={recipe.data.title}
+  category={collectionCategory.RECIPES}
+>
+  <Content />
+</PostLayout>

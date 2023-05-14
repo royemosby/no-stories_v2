@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+
+import PostLayout from '../../layouts/post-layout.astro';
+import { collectionCategory } from '../../layouts/base-layout.astro';
+
+export async function getStaticPaths() {
+  const concepts = await getCollection('concepts');
+  return concepts
+    .filter((concept) => !concept.data.definition)
+    .filter((concept) => concept.data.title !== 'kitchen glossary')
+    .map((concept) => ({
+      params: { slug: concept.slug },
+      props: { concept },
+    }));
+}
+const { concept } = Astro.props;
+const { Content } = await concept.render();
+---
+
+<PostLayout
+  category={collectionCategory.CONCEPTS}
+  postDescription={concept.data.description}
+  postTitle={concept.data.title}
+>
+  <Content />
+</PostLayout>
