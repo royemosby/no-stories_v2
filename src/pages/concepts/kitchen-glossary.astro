@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout, {
   collectionCategory,
 } from '../../layouts/base-layout.astro';
-import GlossaryEntry from '../../components/common/glossary-entry.astro';
+import GlossaryEntry from '../../components/common/glossary-entry-component.astro';
 
 const concepts = await getCollection('concepts');
 const [glossary] = concepts.filter(
