@@ -1,0 +1,6 @@
+{
+  "extends": ["astro", "prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}
