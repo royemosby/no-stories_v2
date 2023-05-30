@@ -11,23 +11,51 @@ export interface Props {
 const { title, date, description, href, pinned } = Astro.props;
 ---
 
-<a href={href}>
-  <article class={pinned ? 'pinned' : ''}>
-    <h2>{title}</h2>
-    <h3>{description}</h3>
-    {date && <p>{'Updated at ' + formatDate(date)}</p>}
-  </article>
-</a>
+<div>
+  <a href={href}>
+    <article class={pinned ? 'pinned' : ''}>
+      <h2>{title}</h2>
+      <h3>{description}</h3>
+      {date && <p>{'Updated at ' + formatDate(date)}</p>}
+    </article>
+  </a>
+</div>
+
 <style>
-  a {
-    display: block;
-    border: 1px solid black;
+  div {
+    width: 100%;
     margin: 1rem;
-    padding: 1rem;
-    position: relative;
+    background-color: #fff;
+    border: 1px solid var(--border-on-light);
+    box-shadow: 8px 8px 0 var(--accent-red), 10px 10px 3px rgba(0, 0, 0, 0.5);
+    padding: 0.5rem;
   }
-  a:hover {
-    background-color: rgb(219, 255, 219);
+  div:last-child {
+    margin-bottom: 3rem;
+  }
+  div:hover,
+  div:focus {
+    box-shadow: 10px 10px 0 var(--accent-red), 12px 12px 3px rgba(0, 0, 0, 0.8);
+    outline: 3px solid var(--accent-blue);
+    border: 1px solid var(--accent-blue);
+  }
+  div:active {
+    transform: translate(2px, 2px);
+    outline: 4px solid var(--accent-blue);
+    box-shadow: 6px 6px 0 var(--accent-red), 10px 10px 3px rgba(0, 0, 0, 1);
+  }
+  a {
+    position: relative;
+    width: 100%;
+    z-index: 2;
+    color: var(--text-on-light);
+    text-decoration: none;
+  }
+  a:visited {
+    color: var(--text-on-light);
+  }
+  article {
+    z-index: 2;
   }
   .pinned {
     position: relative;
