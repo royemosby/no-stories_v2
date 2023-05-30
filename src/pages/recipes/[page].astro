@@ -26,7 +26,7 @@ const { page } = Astro.props;
   category={collectionCategory.RECIPES}
 >
   <h1>Recipes</h1>
-  <p class="subheading">Recipes that I have made or curated over the years</p>
+  <p class="sub-heading">Recipes that I have made or curated over the years</p>
   <Pagination
     previousPage={page.url.prev}
     nextPage={page.url.next}
@@ -50,5 +50,3 @@ const { page } = Astro.props;
     pageCount={page.lastPage}
   />
 </IndexLayout>
-
-{/*<div>{toTitleCase(recipe.data.title)}</div>*/}
