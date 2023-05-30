@@ -22,18 +22,26 @@
   <textarea
     id="message"
     name="message"
-    rows="6"
+    rows="8"
   ></textarea>
-
   <button type="submit">send message</button>
 </form>
 
 <style>
   form {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr;
+    row-gap: 0.5rem;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2rem;
   }
-  form button {
-    grid-column: 1 / -1;
+  label {
+    position: relative;
+    top: 0.75rem;
+  }
+  label,
+  button {
+    font-weight: 800;
   }
 </style>
