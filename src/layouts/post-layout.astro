@@ -16,5 +16,7 @@ const { postTitle, postDescription, category } = Astro.props;
 >
   <h1>{postTitle}</h1>
   <h2>{postDescription}</h2>
-  <slot />
+  <div class="content">
+    <slot />
+  </div>
 </BaseLayout>
