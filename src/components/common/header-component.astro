@@ -4,35 +4,27 @@ const { category } = Astro.props;
 ---
 
 <header>
-  <p class="site-title">
-    <a href="/"> No Stories <span>-just-</span> Recipes</a>
+  <p class="site-title heading">
+    <a href="/">
+      No Stories just Recipes
+      <Nav category={category} />
+    </a>
+    <style>
+      header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+      .site-title {
+        font-size: 4em;
+        margin: 0 0 1rem 0;
+        text-align: center;
+      }
+      p a {
+        text-decoration: none;
+        color: var(--text-on-light);
+      }
+    </style>
   </p>
-  <Nav category={category} />
 </header>
-<style>
-  header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .site-title {
-    font-size: 4em;
-    font-weight: bold;
-    background: linear-gradient(
-      180deg,
-      #1f005c,
-      #3d0d73,
-      #5f208b,
-      #8538a2,
-      #aa55b9,
-      #cf78d0,
-      #e8a0e0,
-      #ffcdf3
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 400%;
-    background-position: 0%;
-    margin: 1rem 0;
-  }
-</style>
