@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/base-layout.astro';
-import Card from '../components/card-component.astro';
 import EntryCardComponent from '../components/entry-card-component.astro';
 import { toTitleCase } from '../utils';
 import { collectionCategory } from '../layouts/base-layout.astro';
@@ -22,7 +21,7 @@ const sortedEntries = entries
     if (b.data.date < a.data.date) return -1;
     return 0;
   })
-  .slice(0, 3);
+  .slice(0, 6);
 ---
 
 <BaseLayout
@@ -30,81 +29,15 @@ const sortedEntries = entries
   pageDescription="Welcome to kaleidoscope"
   category={collectionCategory.INDEX}
 >
-  <main>
-    <ul
-      role="list"
-      class="link-card-grid"
-    >
-      <Card
-        href="/recipes/1"
-        title="Recipes"
-        body="Go cook some stuff"
+  <h1>Recent Updates</h1>
+  {
+    sortedEntries.map((entry) => (
+      <EntryCardComponent
+        href={'/' + entry.collection + '/' + entry.slug}
+        title={toTitleCase(entry.data.title)}
+        date={entry.data.date}
+        description={entry.data.description}
       />
-      <Card
-        href="/concepts"
-        title="Concepts"
-        body="General cooking notes, shorthand for techiques..."
-      />
-      <Card
-        href="/tools/1"
-        title="Tools"
-        body="Digital food prep tools, widgets"
-      />
-      <Card
-        href="/about"
-        title="About"
-        body="Do some shit and tell about it here"
-      />
-    </ul>
-    <h1>Recent Updates</h1>
-    {
-      sortedEntries.map((entry) => (
-        <EntryCardComponent
-          href={'/' + entry.collection + '/' + entry.slug}
-          title={toTitleCase(entry.data.title)}
-          date={entry.data.date}
-          description={entry.data.description}
-        />
-      ))
-    }
-  </main>
+    ))
+  }
 </BaseLayout>
-
-<style>
-  main {
-    margin: auto;
-    padding: 1.5rem;
-    max-width: 60ch;
-  }
-  h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-  }
-
-  .instructions {
-    line-height: 1.6;
-    margin: 1rem 0;
-    border: 1px solid rgba(var(--accent), 25%);
-    background-color: white;
-    padding: 1rem;
-    border-radius: 0.4rem;
-  }
-  .instructions code {
-    font-size: 0.875em;
-    font-weight: bold;
-    background: rgba(var(--accent), 12%);
-    color: rgb(var(--accent));
-    border-radius: 4px;
-    padding: 0.3em 0.45em;
-  }
-  .instructions strong {
-    color: rgb(var(--accent));
-  }
-  .link-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-    gap: 1rem;
-    padding: 0;
-  }
-</style>
