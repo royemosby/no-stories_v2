@@ -21,3 +21,9 @@ const definitions = concepts.filter((concept) => concept.data.definition);
   <h1>{glossary.data.description || 'glossary'}</h1>
   {definitions.map((d) => <GlossaryEntry definition={d} />)}
 </BaseLayout>
+
+<style>
+  h1 {
+    margin-bottom: 1rem;
+  }
+</style>

@@ -5,5 +5,24 @@ const { Content } = await definition.render();
 
 <details>
   <summary>{definition.data.title}</summary>
-  <Content />
+  <div>
+    <Content />
+  </div>
 </details>
+
+<style>
+  details {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  details[open] div {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    border: 1px solid var(--border-on-light);
+    box-shadow: 6px 6px 0 var(--accent-red);
+  }
+  details[open] summary {
+    font-weight: 800;
+  }
+</style>
