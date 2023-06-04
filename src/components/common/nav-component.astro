@@ -23,11 +23,9 @@ const { category } = Astro.props;
   <li class={category === collectionCategory.NOTES ? 'current-page' : ''}>
     <a href="/notes/1">notes</a>
   </li>
-  {
-    /*<li class={category === collectionCategory.SEARCH ? 'current-page' : ''}>
+  <li class={category === collectionCategory.SEARCH ? 'current-page' : ''}>
     <a href="/search">search</a>
-  </li>*/
-  }
+  </li>
 </ul>
 <style>
   ul {
