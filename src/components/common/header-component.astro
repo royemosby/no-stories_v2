@@ -9,22 +9,37 @@ const { category } = Astro.props;
       No Stories just Recipes
       <Nav category={category} />
     </a>
-    <style>
-      header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 2rem;
-      }
-      .site-title {
-        font-size: 4em;
-        margin: 0 0 1rem 0;
-        text-align: center;
-      }
-      p a {
-        text-decoration: none;
-        color: var(--text-on-light);
-      }
-    </style>
   </p>
 </header>
+
+<style>
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  .site-title {
+    font-size: 2em;
+    margin: 0 0 0.5rem 0;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 380px) {
+    .site-title {
+      font-size: 3em;
+      margin: 0 0 1rem 0;
+    }
+  }
+  @media screen and (min-width: 920px) {
+    .site-title {
+      font-size: 4em;
+      margin: 0 0 1rem 0;
+    }
+  }
+
+  p a {
+    text-decoration: none;
+    color: var(--text-on-light);
+  }
+</style>
