@@ -51,11 +51,30 @@ const { category } = Astro.props;
     color: var(--text-on-light);
   }
   li:hover a {
-    text-decoration: underline;
+    text-decoration: none;
+    position: relative;
   }
+
+  li:hover a::before {
+    box-sizing: content-box;
+    content: '';
+    width: 100%;
+    height: 0.5em;
+    border: 2px solid var(--accent-yellow);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+    background-color: var(--accent-blue);
+  }
+
+  li:active a::before {
+    transform: translate(5%, -40%);
+    transform: translateY();
+  }
+
   .current-page {
     position: relative;
-    pointer-events: none;
   }
   .current-page::before {
     box-sizing: content-box;

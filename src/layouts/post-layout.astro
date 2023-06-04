@@ -20,3 +20,15 @@ const { postTitle, postDescription, category } = Astro.props;
     <slot />
   </div>
 </BaseLayout>
+
+<style is:global>
+  .content {
+    margin-bottom: 2rem;
+  }
+  .content p:has(img) {
+    text-align: center;
+  }
+  .content p img {
+    margin: auto;
+  }
+</style>
