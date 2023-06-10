@@ -5,11 +5,9 @@ const { category } = Astro.props;
 
 <header>
   <p class="site-title heading">
-    <a href="/">
-      No Stories just Recipes
-      <Nav category={category} />
-    </a>
+    <a href="/"> No Stories just Recipes</a>
   </p>
+  <Nav category={category} />
 </header>
 
 <style>
@@ -17,7 +15,6 @@ const { category } = Astro.props;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2rem;
   }
   .site-title {
     font-size: 2em;
@@ -25,7 +22,10 @@ const { category } = Astro.props;
     text-align: center;
   }
 
-  @media screen and (min-width: 380px) {
+  @media screen and (min-width: 480px) {
+    header {
+      margin-bottom: 2rem;
+    }
     .site-title {
       font-size: 3em;
       margin: 0 0 1rem 0;

@@ -15,14 +15,15 @@ const { postTitle, postDescription, category } = Astro.props;
   pageDescription={postDescription}
 >
   <h1>{postTitle}</h1>
-  <h2>{postDescription}</h2>
+  <p class="sub-heading">{postDescription}</p>
   <div class="content">
     <slot />
   </div>
 </BaseLayout>
 
 <style is:global>
-  .content {
+  .content,
+  p {
     margin-bottom: 2rem;
   }
   .content p:has(img) {

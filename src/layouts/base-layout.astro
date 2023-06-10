@@ -32,8 +32,8 @@ const { pageTitle, pageDescription, category } = Astro.props;
     />
     <link
       rel="icon"
-      type="image/svg+xml"
-      href="/favicon.svg"
+      type="image/x-icon"
+      href="/favicon.ico"
     />
     <meta
       name="generator"
@@ -88,13 +88,18 @@ const { pageTitle, pageDescription, category } = Astro.props;
   body {
     background-color: #faca52;
     max-width: 1200px;
-    width: 80vw;
+    width: 90vw;
     margin: auto;
     display: flex;
     flex-direction: column;
     height: auto;
     padding-bottom: 2rem;
     color: var(--text-on-light);
+  }
+  @media screen and (min-width: 770px) {
+    body {
+      width: 80vw;
+    }
   }
   main {
     background-color: #fef9ed;
@@ -106,7 +111,7 @@ const { pageTitle, pageDescription, category } = Astro.props;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 2rem;
+    padding: 0 0.5rem;
   }
   main:has(div:active) {
     transform: translateY(0.5px);
