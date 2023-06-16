@@ -1,11 +1,11 @@
 ---
 title: Bo Ssam
 date: 2021-02-28 18:00:00 -4
-description: Cured and slow-roasted pork shoulder served with lettuce and other accompanyments
+description: Cured and slow-roasted pork shoulder served with lettuce and other accompaniments
 tags: ["pork", "dinner", "finger-food", "slow"]
 ---
 
-This recipe is an adaptation of Momofuku's Bo Ssaam recipe originally posted in the [New York Times](https://cooking.nytimes.com/recipes/12197-momofukus-bo-ssam)
+This recipe is an adaptation of Momofuku's Bo Ssam recipe originally posted in the [New York Times](https://cooking.nytimes.com/recipes/12197-momofukus-bo-ssam)
 
 PORK BUTT:
 1 whole bone-in pork butt or picnic ham (8 to 10 pounds)
