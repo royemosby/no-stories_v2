@@ -1,5 +1,5 @@
 ---
-date: 2023-01-28
+date: 2023-07-23
 title: Sous Vide Temperatures and Times
 description: Quick references of temperatures and times for sous vide cooks of different types.
 tags: ['cooking']
