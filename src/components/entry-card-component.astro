@@ -23,27 +23,54 @@ const { title, date, description, href, pinned } = Astro.props;
 
 <style>
   div {
+    position: relative;
+    transform-style: preserve-3d;
     width: 100%;
     margin: 1rem;
     background-color: #fff;
     border: 1px solid var(--border-on-light);
-    box-shadow: 8px 8px 0 var(--accent-red), 10px 10px 3px rgba(0, 0, 0, 0.5);
     padding: 0.5rem;
+    &:hover,
+    &:focus {
+      outline: 3px solid var(--accent-blue);
+      border: 1px solid var(--accent-blue);
+      &::before {
+        transform: translate3d(12px, 12px, -1px);
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
+      }
+    }
+    &:active {
+      transform: translate(2px, 2px);
+      outline: 4px solid var(--accent-blue);
+      &::before {
+        transform: translate3d(10px, 10px, -1px);
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
+      }
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      transform: translate3d(10px, 10px, -1px);
+      background: conic-gradient(
+        from 80deg at 0% 25%,
+        #f16b4d,
+        #f16b4d,
+        #ad2bc1,
+        #ad2bc1,
+        #6a0960,
+        #f16b4d,
+        #4b83f9,
+        #f16b4d,
+        #f16b4d
+      );
+    }
   }
+
   div:last-child {
     margin-bottom: 3rem;
   }
-  div:hover,
-  div:focus {
-    box-shadow: 10px 10px 0 var(--accent-red), 12px 12px 3px rgba(0, 0, 0, 0.8);
-    outline: 3px solid var(--accent-blue);
-    border: 1px solid var(--accent-blue);
-  }
-  div:active {
-    transform: translate(2px, 2px);
-    outline: 4px solid var(--accent-blue);
-    box-shadow: 6px 6px 0 var(--accent-red), 10px 10px 3px rgba(0, 0, 0, 1);
-  }
+
   a {
     position: relative;
     width: 100%;
