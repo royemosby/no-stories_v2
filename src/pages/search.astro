@@ -25,7 +25,15 @@ import BaseLayout, { collectionCategory } from '../layouts/base-layout.astro';
     });
     addFacetExclusion('is_hidden', 'true');
   </script>
-
+  <script is:inline>
+    //HACK until Algolia includes autofocus:true in config
+    setTimeout(function () {
+      const input = window.document.querySelector('input');
+      if (input) {
+        input.focus();
+      }
+    }, 250);
+  </script>
   <h1>Search:</h1>
   <div id="search"></div>
 </BaseLayout>
