@@ -12,10 +12,10 @@ const description =
 const contepts = await getCollection('concepts');
 const sortedConcepts = contepts
   .sort((a, b) => {
-    const aTitle = a.data.title.toLowerCase();
-    const bTitle = b.data.title.toLowerCase();
-    if (aTitle < bTitle) return -1;
-    if (bTitle < aTitle) return 1;
+    if (!a.data.date) return 1;
+    if (!b.data.date) return -1;
+    if (a.data.date < b.data.date) return 1;
+    if (b.data.date < a.data.date) return -1;
     return 0;
   })
   //Astro collections are flat. This removes definition entries.

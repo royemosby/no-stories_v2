@@ -9,10 +9,10 @@ import { collectionCategory } from '../../layouts/base-layout.astro';
 export async function getStaticPaths({ paginate }) {
   const notes = await getCollection('notes');
   const sortedNotes = notes.sort((a, b) => {
-    const aTitle = a.data.title.toLowerCase();
-    const bTitle = b.data.title.toLowerCase();
-    if (aTitle < bTitle) return -1;
-    if (bTitle < aTitle) return 1;
+    if (!a.data.date) return 1;
+    if (!b.data.date) return -1;
+    if (a.data.date < b.data.date) return 1;
+    if (b.data.date < a.data.date) return -1;
     return 0;
   });
   return paginate(sortedNotes, { pageSize: 10 });
